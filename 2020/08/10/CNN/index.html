@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://m.qpic.cn/psc?/V541CGzv1Mvc3K2WoGiw2F2a2G2EyRWX/bqQfVz5yrrGYSXMvKr.cqWue9mjncpWhAHP.crEk6Zu*hiGbsbQh72SVldL7zTeRxNS3o1w6XsrHaV0axlZ115UAV1F6V8Qup.I1OTq4G9Y!/b&bo=cQLCAQAAAAABB5A!&rf=viewer_4">
 <meta property="og:image" content="http://m.qpic.cn/psc?/V541CGzv1Mvc3K2WoGiw2F2a2G2EyRWX/TmEUgtj9EK6.7V8ajmQrEEt6sscVE7i9thaYP9AhM*SmUo8*jEnI256kxorXrCXs6uZ54*8VbrbHNefd5Dd444iOicAmTNEHT9bOjQl5.eI!/b&bo=egLnAQAAAAABF64!&rf=viewer_4">
 <meta property="article:published_time" content="2020-08-10T09:00:01.564Z">
-<meta property="article:modified_time" content="2020-08-12T15:13:41.779Z">
+<meta property="article:modified_time" content="2020-08-12T15:16:52.959Z">
 <meta property="article:author" content="lml">
 <meta property="article:tag" content="cnn">
 <meta name="twitter:card" content="summary">
@@ -224,7 +224,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-12 23:13:41" itemprop="dateModified" datetime="2020-08-12T23:13:41+08:00">2020-08-12</time>
+                <time title="修改时间：2020-08-12 23:16:52" itemprop="dateModified" datetime="2020-08-12T23:16:52+08:00">2020-08-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -242,7 +242,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>746</span>
+              <span>740</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -264,13 +264,11 @@
         <h1 id="cnn"><a href="#cnn" class="headerlink" title="cnn"></a>cnn</h1><h2 id="cnn重要的步骤"><a href="#cnn重要的步骤" class="headerlink" title="cnn重要的步骤"></a>cnn重要的步骤</h2><p>Convolution(卷积)，Max Pooling(池化)， Fully Connected Feedforward network(全连接层)  </p>
 <a id="more"></a>
 <p>大致步骤，传入一张图，通过卷积-&gt;池化-&gt;卷积-&gt;池化等反复训练，最后通过全连接层将获得的特征展开，进行DNN，最后ont-hot得到一个概率较高的东西，最后得到图像为什么物品。</p>
-<h3 id="Convolution-卷积"><a href="#Convolution-卷积" class="headerlink" title="Convolution(卷积)"></a>Convolution(卷积)</h3><p>卷积主要有Filter，stride，feature map</p>
+<h2 id="Convolution-卷积"><a href="#Convolution-卷积" class="headerlink" title="Convolution(卷积)"></a>Convolution(卷积)</h2><p>卷积主要有Filter，stride，feature map</p>
 <p><img src="https://gitee.com/heavena888/photo/raw/master/img/QQ%E5%9B%BE%E7%89%8720200812224841.png"></p>
 <p>feature map，从输入的图片开始，以mnist为列，如果是灰度图则为28 $\times$ 28 $\times$ 1，如果为RGB则为28 $\times$ 28 $\times$ 3，然后开始第一轮的卷积，以图为例，stride为1，在featrue里面寻找与filter同样大小的矩阵，将feature里面的矩阵与filter进行点乘再相加，形成一个新的feature map里面的一个数字，如果输入的feature map为28 $\times$ 28 $\times$ 1，所产生一个新的feature map只要使用1个filter， 如果输入的feature map是28 $\times$ 28 $\times$ 3，那么产生一个新的feature map则要使用3个filter，</p>
-<p>###Max Pooling(池化)</p>
-<p><img src="https://m.qpic.cn/psc?/V541CGzv1Mvc3K2WoGiw2F2a2G2EyRWX/bqQfVz5yrrGYSXMvKr.cqWue9mjncpWhAHP.crEk6Zu*hiGbsbQh72SVldL7zTeRxNS3o1w6XsrHaV0axlZ115UAV1F6V8Qup.I1OTq4G9Y!/b&bo=cQLCAQAAAAABB5A!&rf=viewer_4"><br>池化的作用感觉为选出一定区域里面最能表现特征的区域。选择你要进行池化的矩阵大小，在feature map里面选择所对应的大小，并保留最大的数字，循环形成新的feature。</p>
-<p>###Feedforward network(全连接层)</p>
-<p><img src="http://m.qpic.cn/psc?/V541CGzv1Mvc3K2WoGiw2F2a2G2EyRWX/TmEUgtj9EK6.7V8ajmQrEEt6sscVE7i9thaYP9AhM*SmUo8*jEnI256kxorXrCXs6uZ54*8VbrbHNefd5Dd444iOicAmTNEHT9bOjQl5.eI!/b&bo=egLnAQAAAAABF64!&rf=viewer_4"><br>将所训练得到特征进行展开，用DNN的方式最后等到one-hot最后将概率最大的物品，选为图片所对应的物品。</p>
+<h2 id="Max-Pooling-池化"><a href="#Max-Pooling-池化" class="headerlink" title="Max Pooling(池化)"></a>Max Pooling(池化)</h2><p><img src="https://m.qpic.cn/psc?/V541CGzv1Mvc3K2WoGiw2F2a2G2EyRWX/bqQfVz5yrrGYSXMvKr.cqWue9mjncpWhAHP.crEk6Zu*hiGbsbQh72SVldL7zTeRxNS3o1w6XsrHaV0axlZ115UAV1F6V8Qup.I1OTq4G9Y!/b&bo=cQLCAQAAAAABB5A!&rf=viewer_4"><br>池化的作用感觉为选出一定区域里面最能表现特征的区域。选择你要进行池化的矩阵大小，在feature map里面选择所对应的大小，并保留最大的数字，循环形成新的feature。</p>
+<h2 id="Feedforward-network-全连接层"><a href="#Feedforward-network-全连接层" class="headerlink" title="Feedforward network(全连接层)"></a>Feedforward network(全连接层)</h2><p><img src="http://m.qpic.cn/psc?/V541CGzv1Mvc3K2WoGiw2F2a2G2EyRWX/TmEUgtj9EK6.7V8ajmQrEEt6sscVE7i9thaYP9AhM*SmUo8*jEnI256kxorXrCXs6uZ54*8VbrbHNefd5Dd444iOicAmTNEHT9bOjQl5.eI!/b&bo=egLnAQAAAAABF64!&rf=viewer_4"><br>将所训练得到特征进行展开，用DNN的方式最后等到one-hot最后将概率最大的物品，选为图片所对应的物品。</p>
 <p><a target="_blank" rel="noopener" href="https://poloclub.github.io/cnn-explainer/">呈现像素的cnn实现过程</a></p>
 
     </div>
@@ -345,7 +343,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#cnn"><span class="nav-number">1.</span> <span class="nav-text">cnn</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cnn%E9%87%8D%E8%A6%81%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.1.</span> <span class="nav-text">cnn重要的步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Convolution-%E5%8D%B7%E7%A7%AF"><span class="nav-number">1.1.1.</span> <span class="nav-text">Convolution(卷积)</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#cnn"><span class="nav-number">1.</span> <span class="nav-text">cnn</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cnn%E9%87%8D%E8%A6%81%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="nav-number">1.1.</span> <span class="nav-text">cnn重要的步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Convolution-%E5%8D%B7%E7%A7%AF"><span class="nav-number">1.2.</span> <span class="nav-text">Convolution(卷积)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Max-Pooling-%E6%B1%A0%E5%8C%96"><span class="nav-number">1.3.</span> <span class="nav-text">Max Pooling(池化)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Feedforward-network-%E5%85%A8%E8%BF%9E%E6%8E%A5%E5%B1%82"><span class="nav-number">1.4.</span> <span class="nav-text">Feedforward network(全连接层)</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
