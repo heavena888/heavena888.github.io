@@ -6,7 +6,7 @@
     <content><![CDATA[<h1 id="cnn"><a href="#cnn" class="headerlink" title="cnn"></a>cnn</h1><h2 id="cnn重要的步骤"><a href="#cnn重要的步骤" class="headerlink" title="cnn重要的步骤"></a>cnn重要的步骤</h2><p>Convolution(卷积)，Max Pooling(池化)， Fully Connected Feedforward network(全连接层)  </p>
 <p>大致步骤，传入一张图，通过卷积-&gt;池化-&gt;卷积-&gt;池化等反复训练，最后通过全连接层将获得的特征展开，进行DNN，最后ont-hot得到一个概率较高的东西，最后得到图像为什么物品。</p>
 <h3 id="Convolution-卷积"><a href="#Convolution-卷积" class="headerlink" title="Convolution(卷积)"></a>Convolution(卷积)</h3><p>卷积主要有Filter，stride，feature map</p>
-<p>！<a href="https://m.qpic.cn/psc?/V541CGzv1Mvc3K2WoGiw2F2a2G2EyRWX/bqQfVz5yrrGYSXMvKr.cqXSNLnDrDMFqwpTZpd2rok6kN3ez8UHMiS5Q2zS3*rP7bB4ig.WlKqV0MO7FytleWEsjORZxcm.pYUdFX.9Qmro!/b&bo=oAL4AQAAAAADB3k!&rf=viewer_4"></a></p>
+<p><img src="https://m.qpic.cn/psc?/V541CGzv1Mvc3K2WoGiw2F2a2G2EyRWX/bqQfVz5yrrGYSXMvKr.cqXSNLnDrDMFqwpTZpd2rok6kN3ez8UHMiS5Q2zS3*rP7bB4ig.WlKqV0MO7FytleWEsjORZxcm.pYUdFX.9Qmro!/b&bo=oAL4AQAAAAADB3k!&rf=viewer_4"></p>
 ]]></content>
       <categories>
         <category>机器学习</category>
