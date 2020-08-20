@@ -184,6 +184,91 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/16/error/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/lml.jpg">
+      <meta itemprop="name" content="lml">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冲冲冲">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/16/error/" class="post-title-link" itemprop="url">判断过拟合和欠拟合及解决方法</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-16 21:54:01 / 修改时间：23:13:21" itemprop="dateCreated datePublished" datetime="2020-08-16T21:54:01+08:00">2020-08-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>627</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="判断过拟合和欠拟合"><a href="#判断过拟合和欠拟合" class="headerlink" title="判断过拟合和欠拟合"></a>判断过拟合和欠拟合</h1><h2 id="判断过拟合"><a href="#判断过拟合" class="headerlink" title="判断过拟合"></a>判断过拟合</h2><p>过拟合：个人理解为在test data的时候所训练的模型所能寻找的东西过于具体化，当寻找与其类似的物体时，缺少部分特点就有可能将其划分为别的物体，造成正确率的下降，一般为用交叉验证时，正确率高，但是到了train data里面正确率低。</p>
+<h2 id="判断欠拟合"><a href="#判断欠拟合" class="headerlink" title="判断欠拟合"></a>判断欠拟合</h2><p>欠拟合：个人理解为在test train训练得到模型的时候就不能将各种物品的特征找出来，将各种物品混合了，正确率一开始就不对，交叉验证的时候正确率就低了。</p>
+<h2 id="通过mean和variance解释过拟合和欠拟合"><a href="#通过mean和variance解释过拟合和欠拟合" class="headerlink" title="通过mean和variance解释过拟合和欠拟合"></a>通过mean和variance解释过拟合和欠拟合</h2><p><img src="https://gitee.com/heavena888/photo/raw/master/img/HL3VMZCN@HG3DNMHT402%MY.png" alt=""><br>low bias and low variance<br>一般这种情况就是我们所需要的模型符合拟合.<br>high bias and low variance<br>这种情况为欠拟合，如图所示加入我们所要寻找的物品为红色的靶心，但是我们所训练出来的模型他所寻找的物品，为图中的那一堆蓝点所形成的原点，所以寻找的物品并不是我们想要的那个物品。<br>low bias and high variance<br>这种情况为过拟合，如图所示所有的蓝点分布在红色的靶心的周围，我们所训练出来的模型有太多的特征了，所以当train data在进行判断的时候，会将train data中的目标物品中部分不含有部分特征的物品判别成别的物品，或则将部分train data含有部分特征的物品判断成目标物品。所以造成真确率下降。</p>
+<h1 id="解决过拟合和欠拟合的方法"><a href="#解决过拟合和欠拟合的方法" class="headerlink" title="解决过拟合和欠拟合的方法"></a>解决过拟合和欠拟合的方法</h1><p>优先判断是tarin data的问题还是test data的问题<br>如果是test data的问题则使用交叉验证</p>
+<h2 id="解决欠拟合的方法"><a href="#解决欠拟合的方法" class="headerlink" title="解决欠拟合的方法"></a>解决欠拟合的方法</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/10/CNN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -215,7 +300,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-12 23:16:52" itemprop="dateModified" datetime="2020-08-12T23:16:52+08:00">2020-08-12</time>
+                <time title="修改时间：2020-08-20 23:05:00" itemprop="dateModified" datetime="2020-08-20T23:05:00+08:00">2020-08-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,7 +318,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>740</span>
+              <span>754</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -252,7 +337,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="cnn"><a href="#cnn" class="headerlink" title="cnn"></a>cnn</h1><h2 id="cnn重要的步骤"><a href="#cnn重要的步骤" class="headerlink" title="cnn重要的步骤"></a>cnn重要的步骤</h2><p>Convolution(卷积)，Max Pooling(池化)， Fully Connected Feedforward network(全连接层)  </p>
+          <h1 id="cnn"><a href="#cnn" class="headerlink" title="cnn"></a>cnn</h1><h2 id="cnn重要的步骤"><a href="#cnn重要的步骤" class="headerlink" title="cnn重要的步骤"></a>cnn重要的步骤</h2><p>Convolution(卷积)，Max Pooling(池化)， Fully Connected Feedforward network(全连接层)<br>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/08/10/CNN/#more" rel="contents">
@@ -343,7 +428,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -356,7 +441,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -444,6 +529,63 @@
 
 
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

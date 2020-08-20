@@ -3,14 +3,12 @@
   <entry>
     <title>cnn</title>
     <url>/2020/08/10/CNN/</url>
-    <content><![CDATA[<h1 id="cnn"><a href="#cnn" class="headerlink" title="cnn"></a>cnn</h1><h2 id="cnn重要的步骤"><a href="#cnn重要的步骤" class="headerlink" title="cnn重要的步骤"></a>cnn重要的步骤</h2><p>Convolution(卷积)，Max Pooling(池化)， Fully Connected Feedforward network(全连接层)  </p>
-<a id="more"></a>
-<p>大致步骤，传入一张图，通过卷积-&gt;池化-&gt;卷积-&gt;池化等反复训练，最后通过全连接层将获得的特征展开，进行DNN，最后ont-hot得到一个概率较高的东西，最后得到图像为什么物品。</p>
-<h2 id="Convolution-卷积"><a href="#Convolution-卷积" class="headerlink" title="Convolution(卷积)"></a>Convolution(卷积)</h2><p>卷积主要有Filter，stride，feature map</p>
-<p><img src="https://gitee.com/heavena888/photo/raw/master/img/QQ%E5%9B%BE%E7%89%8720200812224841.png"></p>
+    <content><![CDATA[<h1 id="cnn"><a href="#cnn" class="headerlink" title="cnn"></a>cnn</h1><h2 id="cnn重要的步骤"><a href="#cnn重要的步骤" class="headerlink" title="cnn重要的步骤"></a>cnn重要的步骤</h2><p>Convolution(卷积)，Max Pooling(池化)， Fully Connected Feedforward network(全连接层)<br><a id="more"></a><br>大致步骤，传入一张图，通过卷积-&gt;池化-&gt;卷积-&gt;池化等反复训练，最后通过全连接层将获得的特征展开，进行DNN，最后ont-hot得到一个概率较高的东西，最后得到图像为什么物品。</p>
+<h2 id="Convolution-卷积"><a href="#Convolution-卷积" class="headerlink" title="Convolution(卷积)"></a>Convolution(卷积)</h2><p>卷积主要有Filter(过滤器)，stride(步数)，feature map(特征图)</p>
+<p><img src="https://gitee.com/heavena888/photo/raw/master/img/QQ图片20200812224841.png" alt=""></p>
 <p>feature map，从输入的图片开始，以mnist为列，如果是灰度图则为28 $\times$ 28 $\times$ 1，如果为RGB则为28 $\times$ 28 $\times$ 3，然后开始第一轮的卷积，以图为例，stride为1，在featrue里面寻找与filter同样大小的矩阵，将feature里面的矩阵与filter进行点乘再相加，形成一个新的feature map里面的一个数字，如果输入的feature map为28 $\times$ 28 $\times$ 1，所产生一个新的feature map只要使用1个filter， 如果输入的feature map是28 $\times$ 28 $\times$ 3，那么产生一个新的feature map则要使用3个filter，</p>
-<h2 id="Max-Pooling-池化"><a href="#Max-Pooling-池化" class="headerlink" title="Max Pooling(池化)"></a>Max Pooling(池化)</h2><p><img src="https://m.qpic.cn/psc?/V541CGzv1Mvc3K2WoGiw2F2a2G2EyRWX/bqQfVz5yrrGYSXMvKr.cqWue9mjncpWhAHP.crEk6Zu*hiGbsbQh72SVldL7zTeRxNS3o1w6XsrHaV0axlZ115UAV1F6V8Qup.I1OTq4G9Y!/b&bo=cQLCAQAAAAABB5A!&rf=viewer_4"><br>池化的作用感觉为选出一定区域里面最能表现特征的区域。选择你要进行池化的矩阵大小，在feature map里面选择所对应的大小，并保留最大的数字，循环形成新的feature。</p>
-<h2 id="Feedforward-network-全连接层"><a href="#Feedforward-network-全连接层" class="headerlink" title="Feedforward network(全连接层)"></a>Feedforward network(全连接层)</h2><p><img src="http://m.qpic.cn/psc?/V541CGzv1Mvc3K2WoGiw2F2a2G2EyRWX/TmEUgtj9EK6.7V8ajmQrEEt6sscVE7i9thaYP9AhM*SmUo8*jEnI256kxorXrCXs6uZ54*8VbrbHNefd5Dd444iOicAmTNEHT9bOjQl5.eI!/b&bo=egLnAQAAAAABF64!&rf=viewer_4"><br>将所训练得到特征进行展开，用DNN的方式最后等到one-hot最后将概率最大的物品，选为图片所对应的物品。</p>
+<h2 id="Max-Pooling-池化"><a href="#Max-Pooling-池化" class="headerlink" title="Max Pooling(池化)"></a>Max Pooling(池化)</h2><p><img src="https://m.qpic.cn/psc?/V541CGzv1Mvc3K2WoGiw2F2a2G2EyRWX/bqQfVz5yrrGYSXMvKr.cqWue9mjncpWhAHP.crEk6Zu*hiGbsbQh72SVldL7zTeRxNS3o1w6XsrHaV0axlZ115UAV1F6V8Qup.I1OTq4G9Y!/b&amp;bo=cQLCAQAAAAABB5A!&amp;rf=viewer_4" alt=""><br>池化的作用感觉为选出一定区域里面最能表现特征的区域。选择你要进行池化的矩阵大小，在feature map里面选择所对应的大小，并保留最大的数字，循环形成新的feature。</p>
+<h2 id="Feedforward-network-全连接层"><a href="#Feedforward-network-全连接层" class="headerlink" title="Feedforward network(全连接层)"></a>Feedforward network(全连接层)</h2><p><img src="http://m.qpic.cn/psc?/V541CGzv1Mvc3K2WoGiw2F2a2G2EyRWX/TmEUgtj9EK6.7V8ajmQrEEt6sscVE7i9thaYP9AhM*SmUo8*jEnI256kxorXrCXs6uZ54*8VbrbHNefd5Dd444iOicAmTNEHT9bOjQl5.eI!/b&amp;bo=egLnAQAAAAABF64!&amp;rf=viewer_4" alt=""><br>将所训练得到特征进行展开，用DNN的方式最后等到one-hot最后将概率最大的物品，选为图片所对应的物品。</p>
 <p><a href="https://poloclub.github.io/cnn-explainer/">呈现像素的cnn实现过程</a></p>
 ]]></content>
       <categories>
@@ -18,6 +16,21 @@
       </categories>
       <tags>
         <tag>cnn</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>判断过拟合和欠拟合及解决方法</title>
+    <url>/2020/08/16/error/</url>
+    <content><![CDATA[<h1 id="判断过拟合和欠拟合"><a href="#判断过拟合和欠拟合" class="headerlink" title="判断过拟合和欠拟合"></a>判断过拟合和欠拟合</h1><h2 id="判断过拟合"><a href="#判断过拟合" class="headerlink" title="判断过拟合"></a>判断过拟合</h2><p>过拟合：个人理解为在test data的时候所训练的模型所能寻找的东西过于具体化，当寻找与其类似的物体时，缺少部分特点就有可能将其划分为别的物体，造成正确率的下降，一般为用交叉验证时，正确率高，但是到了train data里面正确率低。</p>
+<h2 id="判断欠拟合"><a href="#判断欠拟合" class="headerlink" title="判断欠拟合"></a>判断欠拟合</h2><p>欠拟合：个人理解为在test train训练得到模型的时候就不能将各种物品的特征找出来，将各种物品混合了，正确率一开始就不对，交叉验证的时候正确率就低了。</p>
+<h2 id="通过mean和variance解释过拟合和欠拟合"><a href="#通过mean和variance解释过拟合和欠拟合" class="headerlink" title="通过mean和variance解释过拟合和欠拟合"></a>通过mean和variance解释过拟合和欠拟合</h2><p><img src="https://gitee.com/heavena888/photo/raw/master/img/HL3VMZCN@HG3DNMHT402%MY.png" alt=""><br>low bias and low variance<br>一般这种情况就是我们所需要的模型符合拟合.<br>high bias and low variance<br>这种情况为欠拟合，如图所示加入我们所要寻找的物品为红色的靶心，但是我们所训练出来的模型他所寻找的物品，为图中的那一堆蓝点所形成的原点，所以寻找的物品并不是我们想要的那个物品。<br>low bias and high variance<br>这种情况为过拟合，如图所示所有的蓝点分布在红色的靶心的周围，我们所训练出来的模型有太多的特征了，所以当train data在进行判断的时候，会将train data中的目标物品中部分不含有部分特征的物品判别成别的物品，或则将部分train data含有部分特征的物品判断成目标物品。所以造成真确率下降。</p>
+<h1 id="解决过拟合和欠拟合的方法"><a href="#解决过拟合和欠拟合的方法" class="headerlink" title="解决过拟合和欠拟合的方法"></a>解决过拟合和欠拟合的方法</h1><p>优先判断是tarin data的问题还是test data的问题<br>如果是test data的问题则使用交叉验证</p>
+<h2 id="解决欠拟合的方法"><a href="#解决欠拟合的方法" class="headerlink" title="解决欠拟合的方法"></a>解决欠拟合的方法</h2>]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>过拟合和欠拟合</tag>
       </tags>
   </entry>
 </search>
