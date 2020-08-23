@@ -20,16 +20,23 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","offset":12,"b2t":true,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="判断过拟合和欠拟合判断过拟合过拟合：个人理解为在test data的时候所训练的模型所能寻找的东西过于具体化，当寻找与其类似的物体时，缺少部分特点就有可能将其划分为别的物体，造成正确率的下降，一般为用交叉验证时，正确率高，但是到了train data里面正确率低。 判断欠拟合欠拟合：个人理解为在test train训练得到模型的时候就不能将各种物品的特征找出来，将各种物品混合了，正确率一开始就不对">
+  <meta name="description" content="判断过拟合和欠拟合优先判断是tarin data的问题还是test data的问题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="判断过拟合和欠拟合及解决方法">
 <meta property="og:url" content="http://yoursite.com/2020/08/16/error/index.html">
 <meta property="og:site_name" content="冲冲冲">
-<meta property="og:description" content="判断过拟合和欠拟合判断过拟合过拟合：个人理解为在test data的时候所训练的模型所能寻找的东西过于具体化，当寻找与其类似的物体时，缺少部分特点就有可能将其划分为别的物体，造成正确率的下降，一般为用交叉验证时，正确率高，但是到了train data里面正确率低。 判断欠拟合欠拟合：个人理解为在test train训练得到模型的时候就不能将各种物品的特征找出来，将各种物品混合了，正确率一开始就不对">
+<meta property="og:description" content="判断过拟合和欠拟合优先判断是tarin data的问题还是test data的问题">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/heavena888/photo/raw/master/img/HL3VMZCN@HG3DNMHT402%MY.png">
+<meta property="og:image" content="https://gitee.com/heavena888/photo/raw/master/img/OP0S(ENE~K4~Q@[0A">
+<meta property="og:image" content="https://gitee.com/heavena888/photo/raw/master/img/QQ图片20200822155854.png">
+<meta property="og:image" content="https://gitee.com/heavena888/photo/raw/master/img/QQ图片20200822162653.png">
+<meta property="og:image" content="https://gitee.com/heavena888/photo/raw/master/img/QQ图片20200822163340.png">
+<meta property="og:image" content="https://gitee.com/heavena888/photo/raw/master/img/QQ图片20200823160557.png">
+<meta property="og:image" content="https://gitee.com/heavena888/photo/raw/master/img/QQ图片20200823160619.png">
+<meta property="og:image" content="https://gitee.com/heavena888/photo/raw/master/img/20200823162050.png">
 <meta property="article:published_time" content="2020-08-16T13:54:01.340Z">
-<meta property="article:modified_time" content="2020-08-16T15:13:21.677Z">
+<meta property="article:modified_time" content="2020-08-23T08:22:34.360Z">
 <meta property="article:author" content="lml">
 <meta property="article:tag" content="过拟合和欠拟合">
 <meta name="twitter:card" content="summary">
@@ -214,10 +221,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-08-16 21:54:01 / 修改时间：23:13:21" itemprop="dateCreated datePublished" datetime="2020-08-16T21:54:01+08:00">2020-08-16</time>
+              <time title="创建时间：2020-08-16 21:54:01" itemprop="dateCreated datePublished" datetime="2020-08-16T21:54:01+08:00">2020-08-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-23 16:22:34" itemprop="dateModified" datetime="2020-08-23T16:22:34+08:00">2020-08-23</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -234,7 +247,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>627</span>
+              <span>1.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -253,11 +266,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="判断过拟合和欠拟合"><a href="#判断过拟合和欠拟合" class="headerlink" title="判断过拟合和欠拟合"></a>判断过拟合和欠拟合</h1><h2 id="判断过拟合"><a href="#判断过拟合" class="headerlink" title="判断过拟合"></a>判断过拟合</h2><p>过拟合：个人理解为在test data的时候所训练的模型所能寻找的东西过于具体化，当寻找与其类似的物体时，缺少部分特点就有可能将其划分为别的物体，造成正确率的下降，一般为用交叉验证时，正确率高，但是到了train data里面正确率低。</p>
+        <h1 id="判断过拟合和欠拟合"><a href="#判断过拟合和欠拟合" class="headerlink" title="判断过拟合和欠拟合"></a>判断过拟合和欠拟合</h1><p>优先判断是tarin data的问题还是test data的问题<br><a id="more"></a><br>如果是test data的问题则使用交叉验证</p>
+<h2 id="判断过拟合"><a href="#判断过拟合" class="headerlink" title="判断过拟合"></a>判断过拟合</h2><p>过拟合：个人理解为在test data的时候所训练的模型所能寻找的东西过于具体化，当寻找与其类似的物体时，缺少部分特点就有可能将其划分为别的物体，造成正确率的下降，一般为用交叉验证时，正确率高，但是到了train data里面正确率低。</p>
 <h2 id="判断欠拟合"><a href="#判断欠拟合" class="headerlink" title="判断欠拟合"></a>判断欠拟合</h2><p>欠拟合：个人理解为在test train训练得到模型的时候就不能将各种物品的特征找出来，将各种物品混合了，正确率一开始就不对，交叉验证的时候正确率就低了。</p>
 <h2 id="通过mean和variance解释过拟合和欠拟合"><a href="#通过mean和variance解释过拟合和欠拟合" class="headerlink" title="通过mean和variance解释过拟合和欠拟合"></a>通过mean和variance解释过拟合和欠拟合</h2><p><img src="https://gitee.com/heavena888/photo/raw/master/img/HL3VMZCN@HG3DNMHT402%MY.png" alt=""><br>low bias and low variance<br>一般这种情况就是我们所需要的模型符合拟合.<br>high bias and low variance<br>这种情况为欠拟合，如图所示加入我们所要寻找的物品为红色的靶心，但是我们所训练出来的模型他所寻找的物品，为图中的那一堆蓝点所形成的原点，所以寻找的物品并不是我们想要的那个物品。<br>low bias and high variance<br>这种情况为过拟合，如图所示所有的蓝点分布在红色的靶心的周围，我们所训练出来的模型有太多的特征了，所以当train data在进行判断的时候，会将train data中的目标物品中部分不含有部分特征的物品判别成别的物品，或则将部分train data含有部分特征的物品判断成目标物品。所以造成真确率下降。</p>
-<h1 id="解决过拟合和欠拟合的方法"><a href="#解决过拟合和欠拟合的方法" class="headerlink" title="解决过拟合和欠拟合的方法"></a>解决过拟合和欠拟合的方法</h1><p>优先判断是tarin data的问题还是test data的问题<br>如果是test data的问题则使用交叉验证</p>
-<h2 id="解决欠拟合的方法"><a href="#解决欠拟合的方法" class="headerlink" title="解决欠拟合的方法"></a>解决欠拟合的方法</h2>
+<h1 id="解决test-data或-train-data问题的方法"><a href="#解决test-data或-train-data问题的方法" class="headerlink" title="解决test data或 train data问题的方法"></a>解决test data或 train data问题的方法</h1><p><img src="https://gitee.com/heavena888/photo/raw/master/img/OP0S(ENE~K4~Q@[0A" alt="">BP0WN.png)</p>
+<h2 id="解决train-data"><a href="#解决train-data" class="headerlink" title="解决train data"></a>解决train data</h2><h3 id="new-activation-function"><a href="#new-activation-function" class="headerlink" title="new activation function"></a>new activation function</h3><p>会在每一次bp的时候将数值变成其数值的1/4，最后会形成梯度消失的情况,但是想relu就不会。</p>
+<h3 id="adaptive-learning-rate"><a href="#adaptive-learning-rate" class="headerlink" title="adaptive learning rate"></a>adaptive learning rate</h3><p>换新的学习速度，这个不知道怎么改，慢慢变小，最后就能到一个局部最优解吧（不知道是不是只有一个局部最优解）。</p>
+<h2 id="解决-test-data"><a href="#解决-test-data" class="headerlink" title="解决 test data"></a>解决 test data</h2><h3 id="early-stopping"><a href="#early-stopping" class="headerlink" title="early stopping"></a>early stopping</h3><p><img src="https://gitee.com/heavena888/photo/raw/master/img/QQ图片20200822155854.png" alt=""><br>epochs（所以数据经历一次forward一次bp算一次epochs）<br>如图验证集在经历epochs次数过大的时候total loss将会增加，找到一个最小点然后<br><a target="_blank" rel="noopener" href="https://www.datalearner.com/blog/1051537860479157">early stopping 的实现方法</a></p>
+<h3 id="dropout-out"><a href="#dropout-out" class="headerlink" title="dropout out"></a>dropout out</h3><p>先选择p%的概率随机去除掉输入层隐藏层每层p%的神经元<br><img src="https://gitee.com/heavena888/photo/raw/master/img/QQ图片20200822162653.png" alt=""><br>然后将删除了神经元的每层的权重乘以1-p%，然后开始训练模型<br><img src="https://gitee.com/heavena888/photo/raw/master/img/QQ图片20200822163340.png" alt=""></p>
+<h3 id="regularization"><a href="#regularization" class="headerlink" title="regularization"></a>regularization</h3><p>L-p范数<br>L为矩阵<br>$L_{p}$ = ||X||$_{p}$ = $\sqrt[p]{\sum_{i = 1}^{p}x_{i}^{p}}, X = (x_{1}, x_{2}, ……,x_{n})$<br>L1正则化<br>L1可以增加稀疏性，稀疏性可以理解为将参数更加接近于0，类似我们获得的模型所用的function为这个函数$a<em>x_{1} + b</em>x_{2} + c <em> x_{3} + d </em> x_{1} <em> x_{4}$并且未知数都不等于0，然后用train data进行测试过拟合，然后进行稀疏可能就变成了$a</em>x_{1} + b<em>x_{2} + c </em> x_{3}$可能就拟合了<br><img src="https://gitee.com/heavena888/photo/raw/master/img/QQ图片20200823160557.png" alt=""><br>为什么l1会有稀疏性，因为凸优化算法。（凸优化不会，以后补坑）<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/X1009190387/article/details/105522360?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param">凸优化算法</a><br>L2正则化(weight decay)<br>L2可以使权重变的更小，有利于数据的拟合。<br><img src="https://gitee.com/heavena888/photo/raw/master/img/QQ图片20200823160619.png" alt=""><br>L1,L2的2维具体图像<br><img src="https://gitee.com/heavena888/photo/raw/master/img/20200823162050.png" alt=""><br>L-p范式与范式球的交点为最优解。</p>
+
     </div>
 
     
@@ -337,7 +356,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88"><span class="nav-number">1.</span> <span class="nav-text">判断过拟合和欠拟合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E8%BF%87%E6%8B%9F%E5%90%88"><span class="nav-number">1.1.</span> <span class="nav-text">判断过拟合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%AC%A0%E6%8B%9F%E5%90%88"><span class="nav-number">1.2.</span> <span class="nav-text">判断欠拟合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87mean%E5%92%8Cvariance%E8%A7%A3%E9%87%8A%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88"><span class="nav-number">1.3.</span> <span class="nav-text">通过mean和variance解释过拟合和欠拟合</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">解决过拟合和欠拟合的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%AC%A0%E6%8B%9F%E5%90%88%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">解决欠拟合的方法</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88"><span class="nav-number">1.</span> <span class="nav-text">判断过拟合和欠拟合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E8%BF%87%E6%8B%9F%E5%90%88"><span class="nav-number">1.1.</span> <span class="nav-text">判断过拟合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%AC%A0%E6%8B%9F%E5%90%88"><span class="nav-number">1.2.</span> <span class="nav-text">判断欠拟合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87mean%E5%92%8Cvariance%E8%A7%A3%E9%87%8A%E8%BF%87%E6%8B%9F%E5%90%88%E5%92%8C%E6%AC%A0%E6%8B%9F%E5%90%88"><span class="nav-number">1.3.</span> <span class="nav-text">通过mean和variance解释过拟合和欠拟合</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3test-data%E6%88%96-train-data%E9%97%AE%E9%A2%98%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">解决test data或 train data问题的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3train-data"><span class="nav-number">2.1.</span> <span class="nav-text">解决train data</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#new-activation-function"><span class="nav-number">2.1.1.</span> <span class="nav-text">new activation function</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#adaptive-learning-rate"><span class="nav-number">2.1.2.</span> <span class="nav-text">adaptive learning rate</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3-test-data"><span class="nav-number">2.2.</span> <span class="nav-text">解决 test data</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#early-stopping"><span class="nav-number">2.2.1.</span> <span class="nav-text">early stopping</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dropout-out"><span class="nav-number">2.2.2.</span> <span class="nav-text">dropout out</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#regularization"><span class="nav-number">2.2.3.</span> <span class="nav-text">regularization</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
